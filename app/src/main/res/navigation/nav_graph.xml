@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/contactsHome">
+
+    <fragment
+        android:id="@+id/contactsHome"
+        android:name="com.hasitha.contactlistapp.ui.contactList.ContactListFragment"
+        android:label="fragment_contacts_home"
+        tools:layout="@layout/fragment_contacts_home" >
+
+        <action
+            android:id="@+id/action_contactsHome_to_contactInfoFragment"
+            app:destination="@id/contactInfoFragment">
+            <argument
+                android:name="contact"
+                app:argType="com.hasitha.contactlistapp.model.Contact" />
+        </action>
+
+        <action
+            android:id="@+id/action_contactsHome_to_newContactFragment"
+            app:destination="@id/newContactFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/contactInfoFragment"
+        android:name="com.hasitha.contactlistapp.ui.contactInfo.ContactInfoFragment"
+        android:label="fragment_contact_info"
+        tools:layout="@layout/fragment_contact_info">
+
+        <argument
+            android:name="contact"
+            app:argType="com.hasitha.contactlistapp.model.Contact" />
+
+        <action
+            android:id="@+id/action_contactInfoFragment_to_contactsHome"
+            app:destination="@id/contactsHome" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/newContactFragment"
+        android:name="com.hasitha.contactlistapp.ui.addContact.AddContactFragment"
+        android:label="fragment_new_contact"
+        tools:layout="@layout/fragment_new_contact" >
+        <action
+            android:id="@+id/action_newContactFragment_to_contactsHome"
+            app:destination="@id/contactsHome" />
+    </fragment>
+</navigation>
