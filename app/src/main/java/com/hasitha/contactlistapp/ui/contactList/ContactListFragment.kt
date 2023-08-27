@@ -11,13 +11,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.hasitha.constactlistapp.R
 import com.hasitha.contactlistapp.data.local.LocalDataSource
+import com.hasitha.contactlistapp.model.Contact
 
-class ContactListFragment : Fragment() {
+class ContactListFragment : Fragment(), ContactListAdapter.OnItemClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private val localDataSource = LocalDataSource
@@ -48,18 +50,16 @@ class ContactListFragment : Fragment() {
         val toolbar: Toolbar = view.findViewById(R.id.toolbar)
         (activity as? AppCompatActivity)?.setSupportActionBar(toolbar)
 
-
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         val data = localDataSource.getContacts()
         val adapter = ContactListAdapter(data)
 
-        adapter.setOnItemClickListener(object : ContactListAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
-                Navigation.findNavController(view).navigate(R.id.action_contactsHome_to_contactInfoFragment);
-            }
-        })
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
+        adapter.onItemClickListener = this
         recyclerView.adapter = adapter
+
     }
 
     @Deprecated("Deprecated in Java")
@@ -84,5 +84,10 @@ class ContactListFragment : Fragment() {
 
     private fun filterRecyclerView(query: String?) {
         (recyclerView.adapter as? ContactListAdapter)?.filterByName(query)
+    }
+
+    override fun onItemClick(contact: Contact) {
+        val action = ContactListFragmentDirections.actionContactsHomeToContactInfoFragment(contact)
+        findNavController().navigate(action)
     }
 }

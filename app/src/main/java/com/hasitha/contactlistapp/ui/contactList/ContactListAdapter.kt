@@ -13,6 +13,11 @@ import com.hasitha.contactlistapp.model.Contact
 class ContactListAdapter(private val mList: List<Contact>) : RecyclerView.Adapter<ContactListAdapter.ViewHolder>() {
 
     private var filteredList: MutableList<Contact> = mList.toMutableList()
+    var onItemClickListener: OnItemClickListener? = null
+
+    interface OnItemClickListener {
+        fun onItemClick(contact: Contact)
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     fun filterByName(query: String?) {
@@ -41,10 +46,10 @@ class ContactListAdapter(private val mList: List<Contact>) : RecyclerView.Adapte
 
         holder.imageView.setImageResource(itemsViewModel.image)
         holder.textView.text = itemsViewModel.name
+        holder.textView2.text = itemsViewModel.contactNumber
 
         holder.itemView.setOnClickListener {
-            listener?.onItemClick(position)
-
+            onItemClickListener?.onItemClick(itemsViewModel)
         }
     }
 
@@ -52,18 +57,9 @@ class ContactListAdapter(private val mList: List<Contact>) : RecyclerView.Adapte
         return filteredList.size
     }
 
-    inner class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.my_image)
         val textView: TextView = itemView.findViewById(R.id.my_text)
-    }
-
-    interface OnItemClickListener {
-        fun onItemClick(position: Int)
-    }
-
-    private var listener: OnItemClickListener? = null
-
-    fun setOnItemClickListener(listener: OnItemClickListener) {
-        this.listener = listener
+        val textView2: TextView = itemView.findViewById(R.id.my_text2)
     }
 }
