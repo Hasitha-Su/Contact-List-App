@@ -1,0 +1,88 @@
+
+    plugins {
+        id 'com.android.application'
+        id 'org.jetbrains.kotlin.android'
+        id 'kotlin-android'
+        id 'kotlin-parcelize'
+        id("androidx.navigation.safeargs.kotlin")
+        id 'kotlin-kapt'
+    }
+
+    android {
+        namespace 'com.hasitha.constactlistapp'
+        compileSdk 34
+
+        defaultConfig {
+            applicationId "com.hasitha.constactlistapp"
+            minSdk 24
+            targetSdk 34
+            versionCode 1
+            versionName "1.0"
+            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        }
+
+        buildTypes {
+            release {
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            }
+        }
+
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_18
+            targetCompatibility JavaVersion.VERSION_18
+        }
+
+        kotlinOptions {
+            jvmTarget = '18'
+        }
+
+        buildFeatures {
+            viewBinding true
+        }
+
+        dataBinding {
+            enabled = true
+        }
+
+        testOptions {
+            unitTests {
+                includeAndroidResources = true
+            }
+        }
+    }
+
+    dependencies {
+
+        implementation 'androidx.core:core-ktx:1.10.1'
+        implementation 'androidx.appcompat:appcompat:1.6.1'
+        implementation 'com.google.android.material:material:1.5.0'
+        implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+        implementation 'androidx.navigation:navigation-fragment-ktx:2.7.0'
+        implementation 'androidx.navigation:navigation-ui-ktx:2.7.0'
+        implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
+        implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+        implementation 'androidx.test.ext:junit-ktx:1.1.5'
+
+        testImplementation 'junit:junit:4.13.2'
+        testImplementation 'androidx.arch.core:core-testing:2.1.0'
+        androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+        androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+        testImplementation "org.robolectric:robolectric:4.9"
+        debugImplementation 'androidx.fragment:fragment-testing:1.3.6'
+
+        // -- mockito --
+        androidTestImplementation 'org.mockito:mockito-core:4.0.0'
+        // -- ActivityTestRule --
+        androidTestImplementation 'androidx.test:rules:1.4.0'
+        androidTestImplementation 'androidx.test:runner:1.4.0'
+
+        // --- Test ----
+        testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+        androidTestImplementation 'org.mockito:mockito-android:3.7.7'
+        androidTestImplementation 'com.squareup.okhttp3:mockwebserver:4.9.1'
+        androidTestImplementation "org.jetbrains.kotlin:kotlin-reflect:1.6.20"
+        androidTestImplementation 'androidx.test:core-ktx:1.4.0'
+        // ----- Test ----
+
+    }
