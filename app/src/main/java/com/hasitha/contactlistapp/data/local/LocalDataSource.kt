@@ -35,4 +35,8 @@ object  LocalDataSource {
     fun addContact(contact: Contact) {
         contacts.add(contact)
     }
+
+    fun clearContacts() {
+        contacts.clear()
+    }
 }
