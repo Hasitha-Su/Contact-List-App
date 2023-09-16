@@ -34,11 +34,6 @@ The Contacts App is a user-friendly Android application that allows users to man
 - Java JDK 18
 - An Android Emulator or Physical Device for testing
 
-### Installation
-
-1. Clone the repo: `git clone https://github.com/YourUsername/ContactsApp.git`
-2. Open the project in Android Studio
-3. Run the project on an emulator or physical device
 
 ## Usage
 
