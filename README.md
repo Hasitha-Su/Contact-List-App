@@ -10,9 +10,8 @@ The Contacts App is a user-friendly Android application that allows users to man
 2. [Getting Started](#getting-started)
 3. [Prerequisites](#prerequisites)
 4. [Usage](#usage)
-5. [Contact](#contact)
-6. [Future Work](#future-work)
-7. [Acknowledgements](#acknowledgements)
+5. [Future Work](#future-work)
+6. [Acknowledgements](#acknowledgements)
 
 ## Features
 
